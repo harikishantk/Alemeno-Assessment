@@ -1,5 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
+from django.utils.html import mark_safe
 
 # Create your models here.
 class Kid(models.Model):
@@ -27,5 +28,12 @@ class Image(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     is_approved = models.BooleanField(default=False)
-    approved_by = models.CharField(max_length=100, blank=False)
+    approved_by = models.CharField(max_length=100, blank=True)
     food_group = models.CharField(max_length=100, choices=FOOD_GROUP, default='Unknown')
+
+    @property
+    def image_preview(self):
+        if self.image_url:
+            return mark_safe('<img src="{}" width="300" height="300" />'.format(self.image_url))
+        return ""
+    
