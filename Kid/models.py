@@ -13,7 +13,7 @@ class Kid(models.Model):
         return self.name
 
 FOOD_GROUP = [
-    ('Veg', 'Vegetarian'),
+    ('Veg', 'Veg'),
     ('Fruit', 'Fruit'),
     ('Grain', 'Grain'),
     ('Protein', 'Protein'),
